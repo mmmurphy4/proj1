@@ -1,0 +1,7 @@
+0. There is no Pokemon model, so when its called in the home_controller, the error is thrown.
+1. Random pokemon because in the home_controller#index, all the pokemon with no trainer are being generated, and one is being chosen at random with the .sample function. 
+2a. The following line creates a button, when clicked, redirects the program to the capture method in the pokemon controller. the pokemon that is passed with the method is a parameter for the method to use, so it knows what pokemon to capture. 
+2b. It doesn't matter what the route name is called. As long as the same name is used in the routes folder and the views and controllers, the website will be redirected to the correct page.
+3. pesteon (add a bug type to the eeveelutions)
+4. I pass in the trainer_path, with the current_trainer as a parameter. This is so it redirects me back to my own trainer page. 
+5. 
