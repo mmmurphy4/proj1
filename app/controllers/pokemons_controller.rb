@@ -1,9 +1,10 @@
-class PokemonController < ApplicationController
+class PokemonsController < ApplicationController
 
-  before_action :set_pokemon, only: [:capture, :damage]
+  before_action :set_pokemon, only: [:capture, :damage, :destroy]
 
   def new
     @pokemon = Pokemon.new
+    @trainer = current_trainer
   end
 
   def capture
@@ -15,18 +16,18 @@ class PokemonController < ApplicationController
 	  end
   end
 
-  def damage
-    # @pokemon = Pokemon.find(params[:id])
-    if @pokemon.health <= 10
-      @pokemon.destroy
-    else
-      @pokemon.update_attribute(:health, @pokemon.health - 10)
-    end
-    redirect_to current_trainer
-  end
+  # def damage
+  #   # @pokemon = Pokemon.find(params[:id])
+  #   if @pokemon.health <= 10
+  #     @pokemon.destroy
+  #   else
+  #     @pokemon.update_attribute(:health, @pokemon.health - 10)
+  #   end
+  #   redirect_to current_trainer
+  # end
 
   def create
-    @pokemon = Pokemon.create(params[:id])
+    @pokemon = Pokemon.new(pokemon_params)
     @pokemon.trainer_id = current_trainer.id
     @pokemon.level = 1
     @pokemon.health = 100
@@ -34,7 +35,17 @@ class PokemonController < ApplicationController
       redirect_to current_trainer
     else
       flash[:error] = @pokemon.errors.full_messages.to_sentence
+      redirect_to new_pokemon_path
     end 
+  end
+
+  def destroy
+    if @pokemon.health <= 10
+      @pokemon.destroy
+    else
+      @pokemon.update_attribute(:health, @pokemon.health - 10)
+    end
+    redirect_to current_trainer
   end
 
   private

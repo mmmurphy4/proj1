@@ -18,5 +18,6 @@
     <% end %>
   </ul>
 <% end %>
-<!-- <p><%= button_to "Create Pokemon", new_pokemon_path, :class => "buttun medium", :method => :get, :disable => @trainer = current_trainer %></p> -->
-<%= link_to "Create Pokemon", new_pokemon_path %>
+
+<p><%= button_to "Create Pokemon", new_pokemon_path, :class => "buttun medium", :method => :get, :disable => @trainer == current_trainer %></p>
+<!-- <p><%= link_to "Create Pokemon", new_pokemon_path %></p> -->
