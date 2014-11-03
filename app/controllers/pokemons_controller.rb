@@ -1,6 +1,6 @@
 class PokemonsController < ApplicationController
 
-  before_action :set_pokemon, only: [:capture, :damage, :destroy]
+  before_action :set_pokemon, only: [:capture, :damage, :destroy, :update]
 
   def new
     @pokemon = Pokemon.new
@@ -11,20 +11,28 @@ class PokemonsController < ApplicationController
     # @pokemon = Pokemon.find(params[:id])
 	  # @pokemon.trainer_id = current_trainer.id
 	  # if @pokemon.update(pokemon_params)
+   #    redirect_to root_path
+   #  end
     if @pokemon.update_attribute(:trainer_id, current_trainer.id)
 	    redirect_to root_path
 	  end
   end
 
-  # def damage
-  #   # @pokemon = Pokemon.find(params[:id])
-  #   if @pokemon.health <= 10
-  #     @pokemon.destroy
-  #   else
-  #     @pokemon.update_attribute(:health, @pokemon.health - 10)
-  #   end
-  #   redirect_to current_trainer
+  # def update
+    # if @pokemon.update(pokemon_params)
+    #   redirect_to root_path
+    # end
   # end
+
+  def damage
+    # @pokemon = Pokemon.find(params[:id])
+    if @pokemon.health <= 10
+      @pokemon.destroy
+    else
+      @pokemon.update_attribute(:health, @pokemon.health - 10)
+    end
+    redirect_to current_trainer
+  end
 
   def create
     @pokemon = Pokemon.new(pokemon_params)
