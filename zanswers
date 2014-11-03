@@ -4,4 +4,4 @@
 2b. It doesn't matter what the route name is called. As long as the same name is used in the routes folder and the views and controllers, the website will be redirected to the correct page.
 3. pesteon (add a bug type to the eeveelutions)
 4. I pass in the trainer_path, with the current_trainer as a parameter. This is so it redirects me back to my own trainer page. 
-5. 
+5. In application.html.erb, the file is rendering a another view called messages. Messages checks if there are any messages that need to be flashed. If so they will be.
